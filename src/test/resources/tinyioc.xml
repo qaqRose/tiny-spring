@@ -25,4 +25,7 @@
         <property name="expression" value="execution(* us.codecraft.tinyioc.*.*(..))"></property>
     </bean>
 
+    <bean id="beanInitializeLogger" class="us.codecraft.tinyioc.BeanInitializeLogger">
+    </bean>
+
 </beans>

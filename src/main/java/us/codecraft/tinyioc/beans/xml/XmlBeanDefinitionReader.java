@@ -38,12 +38,14 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		inputStream.close();
 	}
 
+	// 通过xml来注册Bean对象
 	public void registerBeanDefinitions(Document doc) {
 		Element root = doc.getDocumentElement();
 
 		parseBeanDefinitions(root);
 	}
 
+	// 解析xml文件来获取Bean对象
 	protected void parseBeanDefinitions(Element root) {
 		NodeList nl = root.getChildNodes();
 		for (int i = 0; i < nl.getLength(); i++) {
@@ -55,6 +57,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		}
 	}
 
+	//从Element中获取Bean的属性并注册到系统中
 	protected void processBeanDefinition(Element ele) {
 		String name = ele.getAttribute("id");
 		String className = ele.getAttribute("class");

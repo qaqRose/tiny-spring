@@ -6,6 +6,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
+ * 通过URL获取资源
  * @author yihua.huang@dianping.com
  */
 public class UrlResource implements Resource {

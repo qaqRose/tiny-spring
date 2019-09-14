@@ -10,6 +10,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * Bean 工厂的抽象实现
+ * 解决Bean 装配， 获取的问题
  * @author yihua.huang@dianping.com
  */
 public abstract class AbstractBeanFactory implements BeanFactory {
@@ -20,6 +22,13 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 
 	private List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
 
+	/**
+	 * Bean 获取
+	 * 如果没有Bean未实例化，则创建并实例化
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
 	@Override
 	public Object getBean(String name) throws Exception {
 		BeanDefinition beanDefinition = beanDefinitionMap.get(name);
@@ -34,7 +43,8 @@ public abstract class AbstractBeanFactory implements BeanFactory {
 		}
 		return bean;
 	}
-
+	// 初始化Bean
+	// 在Bean 初始化前后插入动作
 	protected Object initializeBean(Object bean, String name) throws Exception {
 		for (BeanPostProcessor beanPostProcessor : beanPostProcessors) {
 			bean = beanPostProcessor.postProcessBeforeInitialization(bean, name);
